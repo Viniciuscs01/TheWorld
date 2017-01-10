@@ -13,7 +13,7 @@ namespace TheWorld.Controllers.API
         [HttpGet("api/trips")]
         public JsonResult get()
         {
-            return Json(new Trip() { Name = "My Trip" }); 
+            return Json(new Trip() { Name = "My Trip Teste" }); 
         }
     }
 }
