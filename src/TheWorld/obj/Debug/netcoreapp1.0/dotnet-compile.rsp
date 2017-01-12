@@ -208,6 +208,7 @@ C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Migrations\WorldCont
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\IWorldRepository.cs
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\Stop.cs
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\Trip.cs
+C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\TripViewModel.cs
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\WorldContext.cs
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\WorldContextSeedData.cs
 C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\WorldRepository.cs
