@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TheWorld.Models
+namespace TheWorld.ViewModels
 {
     public class TripViewModel
     {
