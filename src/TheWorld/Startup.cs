@@ -39,7 +39,7 @@ namespace TheWorld
             services.AddSingleton(_config);
             services.AddScoped<IMailService, DebugMailService>();
             services.AddDbContext<WorldContext>();
-
+            services.AddTransient<GeoCoordsServices>();
             services.AddScoped<IWorldRepository, WorldRepository>();
             services.AddTransient<WorldContextSeedData>();
             services.AddLogging();

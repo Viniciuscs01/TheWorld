@@ -211,6 +211,8 @@
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\WorldContextSeedData.cs"
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Models\WorldRepository.cs"
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Services\DebugMailService.cs"
+"C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Services\GeoCoordsResul.cs"
+"C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Services\GeoCoordsServices.cs"
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\Services\IMailService.cs"
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\ViewModels\ContactViewModel.cs"
 "C:\Users\Vinícius\Documents\Examples\TheWorld\src\TheWorld\ViewModels\StopViewModel.cs"
