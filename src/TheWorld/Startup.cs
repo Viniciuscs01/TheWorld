@@ -13,6 +13,7 @@ using TheWorld.Models;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using TheWorld.ViewModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace TheWorld
 {
@@ -37,13 +38,32 @@ namespace TheWorld
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton(_config);
-            services.AddScoped<IMailService, DebugMailService>();
-            services.AddDbContext<WorldContext>();
-            services.AddTransient<GeoCoordsServices>();
-            services.AddScoped<IWorldRepository, WorldRepository>();
-            services.AddTransient<WorldContextSeedData>();
-            services.AddLogging();
             services.AddMvc();
+
+            services.AddDbContext<WorldContext>();
+
+            services.AddIdentity<WorldUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            })
+            .AddEntityFrameworkStores<WorldContext>();
+
+            services.AddLogging();
+
+            //services.AddEntityFrameworkSqlServer().AddDbContext<WorldContext>();
+
+            services.AddTransient<GeoCoordsServices>();
+
+            services.AddScoped<IMailService, DebugMailService>();
+
+            
+
+            services.AddTransient<WorldContextSeedData>();
+
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
             //.AddJsonOptions(config =>
             //{
             //    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -54,23 +74,14 @@ namespace TheWorld
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
         {
+            app.UseStaticFiles();
+            app.UseIdentity();
+
             Mapper.Initialize(config =>
             {
                 config.CreateMap<TripViewModel, Trip>().ReverseMap();
                 config.CreateMap<StopViewModel, Stop>().ReverseMap();
             });
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                loggerFactory.AddDebug(LogLevel.Information);
-            }
-            else
-            {
-                loggerFactory.AddDebug(LogLevel.Error);
-            }
-
-            app.UseStaticFiles();
 
             app.UseMvc(config =>
             {
@@ -78,9 +89,9 @@ namespace TheWorld
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
-            });
-
-            seeder.EnsureSeedData().Wait();
+            });            
+            
+            //seeder.EnsureSeedData().Wait();
         }
     }
 }
