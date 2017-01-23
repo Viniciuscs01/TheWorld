@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using TheWorld.Models;
 using TheWorld.Services;
 using TheWorld.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TheWorld.Controllers.Web
 {
@@ -33,8 +33,8 @@ namespace TheWorld.Controllers.Web
         {
             try
             {
-                var data = _repository.getAllTrips();
-                return View(data);
+                var trips = _repository.getAllTrips();
+                return View(trips);
             }
             catch (Exception ex)
             {
@@ -45,17 +45,7 @@ namespace TheWorld.Controllers.Web
 
         public IActionResult Index()
         {
-            try
-            {
-                var data = _repository.getAllTrips();
-                return View(data);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"$Failed to get trips in Index Page: {ex.Message}");
-                return Redirect("/error");
-            }
-            
+            return View();
         }
 
         public IActionResult Contact()

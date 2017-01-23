@@ -14,6 +14,7 @@ using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using TheWorld.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace TheWorld
 {
@@ -39,41 +40,34 @@ namespace TheWorld
         {
             services.AddSingleton(_config);
             services.AddMvc();
-
-            services.AddDbContext<WorldContext>();
-
-            services.AddIdentity<WorldUser, IdentityRole>(config =>
-            {
-                config.User.RequireUniqueEmail = true;
-                config.Password.RequiredLength = 8;
-                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
-            })
-            .AddEntityFrameworkStores<WorldContext>();
-
-            services.AddLogging();
-
-            //services.AddEntityFrameworkSqlServer().AddDbContext<WorldContext>();
-
-            services.AddTransient<GeoCoordsServices>();
-
-            services.AddScoped<IMailService, DebugMailService>();
-
-            
-
-            services.AddTransient<WorldContextSeedData>();
-
-            services.AddScoped<IWorldRepository, WorldRepository>();
-
             //.AddJsonOptions(config =>
             //{
             //    config.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //});
 
+            services.AddIdentity<WorldUser, IdentityRole>()
+            .AddEntityFrameworkStores<WorldContext>()
+            .AddDefaultTokenProviders();
+
+            services.AddLogging();
+
+            services.AddEntityFrameworkSqlServer().AddDbContext<WorldContext>();
+
+            services.AddTransient<GeoCoordsServices>();
+            services.AddTransient<WorldContextSeedData>();
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
+#if DEBUG
+            services.AddScoped<IMailService, DebugMailService>();
+#else
+            services.AddScoped<IMailService, MailService>();
+#endif
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, WorldContextSeedData seeder)
         {
+            loggerFactory.AddDebug(LogLevel.Warning);
             app.UseStaticFiles();
             app.UseIdentity();
 
@@ -89,9 +83,9 @@ namespace TheWorld
                     name: "Default",
                     template: "{controller}/{action}/{id?}",
                     defaults: new { controller = "App", action = "Index" });
-            });            
-            
-            //seeder.EnsureSeedData().Wait();
+            });
+
+            seeder.EnsureSeedData().Wait();
         }
     }
 }

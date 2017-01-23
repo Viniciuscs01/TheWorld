@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0",
-    "signature": "0c540cf143d2b5ba1fd3d2f04931f11dd98379ea"
+    "signature": "2557e746536ce42fbfa55bc4ebfe6d11ade249b8"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,8 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
           "Microsoft.Extensions.Logging.Debug": "1.1.0",
           "AutoMapper": "5.2.0",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.1.0",
+          "Microsoft.AspNetCore.Authorization": "1.1.0"
         },
         "runtime": {
           "TheWorld.dll": {}
@@ -99,10 +100,11 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.Authentication.Cookies.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Authorization/1.0.0": {
+      "Microsoft.AspNetCore.Authorization/1.1.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging.Abstractions": "1.1.0",
           "Microsoft.Extensions.Options": "1.1.0",
+          "NETStandard.Library": "1.6.1",
           "System.Security.Claims": "4.3.0"
         },
         "runtime": {
@@ -473,7 +475,7 @@
       },
       "Microsoft.AspNetCore.Mvc.Core/1.0.1": {
         "dependencies": {
-          "Microsoft.AspNetCore.Authorization": "1.0.0",
+          "Microsoft.AspNetCore.Authorization": "1.1.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "1.1.0",
           "Microsoft.AspNetCore.Http": "1.1.0",
           "Microsoft.AspNetCore.Mvc.Abstractions": "1.0.1",
@@ -3752,10 +3754,10 @@
       "serviceable": true,
       "sha512": "sha512-0u+Aj0a8PmqUcU0A3ugWH1lE/8jBiww5zjCHTw5RZCTRc6/0M/AVxENDUXcBJXxsVAIkTUXi6iKY8zhFmvLWcw=="
     },
-    "Microsoft.AspNetCore.Authorization/1.0.0": {
+    "Microsoft.AspNetCore.Authorization/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-iVFQ5xHSyxmfWYdl5B/xIFzXgm4SRgYQUKlLFVNGfEhbbjw0Ur2pfVrEvpENrhHFOQ2XAZcuFlGxSIzZwsVrMg=="
+      "sha512": "sha512-dqveE6pqsnzkab2vw+aFExFYeCikF/T+GKZW9ki8dwJuN7M2+jJcgWtYAv83q7NjBARVh2xH8xf0ahzeuXL/WQ=="
     },
     "Microsoft.AspNetCore.Cors/1.0.0": {
       "type": "package",
